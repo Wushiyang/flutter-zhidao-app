@@ -4,13 +4,15 @@
  * @Autor: wushiyang
  * @Date: 2022-01-24 15:48:42
  * @LastEditors: wushiyang
- * @LastEditTime: 2022-01-24 18:08:20
+ * @LastEditTime: 2022-01-25 14:51:58
  */
 import 'package:flutter/material.dart';
 import './routes.dart';
 
 abstract class BasePresenter extends StatefulWidget {
-  const BasePresenter({Key? key}) : super(key: key);
+  final Map<String, dynamic>? arguments;
+
+  const BasePresenter(this.arguments, {Key? key}) : super(key: key);
 
   BasePresenterState getState();
 
@@ -20,15 +22,10 @@ abstract class BasePresenter extends StatefulWidget {
 }
 
 abstract class BasePresenterState<T extends BasePresenter> extends State<T> {
-  RouteManager navigator = RouteManager.getInstance();
+  final RoutesManager routesManager = RoutesManager.getInstance();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        onGenerateRoute: navigator.onGenerateRoute, home: buildHome());
-  }
-
-  Widget? buildHome() {
     return Scaffold(
         appBar: buildAppBar(context),
         body: buildBody(context),
@@ -37,15 +34,11 @@ abstract class BasePresenterState<T extends BasePresenter> extends State<T> {
 
   /// 默认导航栏
   PreferredSizeWidget? buildAppBar(BuildContext context) {
-    return AppBar();
+    return AppBar(title: const Text('首页'));
   }
 
   /// 默认body
-  Widget? buildBody(BuildContext context) {
-    return const Center(
-      child: Text('默认Presenter body'),
-    );
-  }
+  Widget buildBody(BuildContext context);
 
   /// 默认body
   Widget? buildBottomNavigationBar(BuildContext context) {}
