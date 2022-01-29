@@ -4,20 +4,17 @@
  * @Autor: wushiyang
  * @Date: 2022-01-28 16:04:43
  * @LastEditors: wushiyang
- * @LastEditTime: 2022-01-28 17:36:37
+ * @LastEditTime: 2022-01-29 10:30:57
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_zhidao_app/pages/TabbarPage/TabbarPageViewModel.dart';
 import 'package:provider/provider.dart';
 
-class NavBarTabBarView extends StatefulWidget implements PreferredSizeWidget {
+class NavBarTabBarView extends StatefulWidget {
   const NavBarTabBarView({Key? key}) : super(key: key);
 
   @override
   _NavBarTabBarViewState createState() => _NavBarTabBarViewState();
-
-  @override
-  Size get preferredSize => const Size.fromHeight(44);
 }
 
 class _NavBarTabBarViewState extends State<NavBarTabBarView>
@@ -27,6 +24,7 @@ class _NavBarTabBarViewState extends State<NavBarTabBarView>
     super.initState();
     context
         .read<TabbarPageViewModel>()
+        .homeModel
         .setHomeNavBarTabBarController(TabController(length: 3, vsync: this));
   }
 
@@ -34,21 +32,28 @@ class _NavBarTabBarViewState extends State<NavBarTabBarView>
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: context.select<TabbarPageViewModel, Future<TabController>>(
-            (viewModel) => viewModel.homeNavBarTabBarController.future),
+            (viewModel) =>
+                viewModel.homeModel.homeNavBarTabBarController.future),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return TabBar(controller: snapshot.data, tabs: const [
               Tab(
-                height: 42,
-                child: Text('视频'),
+                child: Text(
+                  '视频',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               Tab(
-                height: 42,
-                child: Text('推荐'),
+                child: Text(
+                  '推荐',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               Tab(
-                height: 42,
-                child: Text('热榜'),
+                child: Text(
+                  '热榜',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ]);
           }

@@ -4,13 +4,14 @@
  * @Autor: wushiyang
  * @Date: 2022-01-26 09:15:27
  * @LastEditors: wushiyang
- * @LastEditTime: 2022-01-28 17:22:33
+ * @LastEditTime: 2022-01-29 10:28:08
  */
 import 'dart:async';
 
 import 'package:flutter_zhidao_app/baseViewModel.dart';
-import 'package:flutter_zhidao_app/pages/TabbarPage/TabbarPageViewModel.dart';
+// import 'package:flutter_zhidao_app/pages/TabbarPage/TabbarPageViewModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zhidao_app/pages/TabbarPage/HomeModel.dart';
 import './home/HomeView.dart';
 import 'home/NavBarView.dart' as homenav;
 import 'concern/ConcernView.dart';
@@ -22,11 +23,6 @@ class TabbarPageViewModel extends BaseViewModel {
     changeTab(0);
   }
   late int currentIndex;
-  Completer<TabController> homeNavBarTabBarController = Completer();
-  // late Completer homeNavBarTabBarController
-
-  // HomeTabController
-
   final List barList = [
     {
       'icon': const Icon(Icons.home),
@@ -63,7 +59,6 @@ class TabbarPageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void setHomeNavBarTabBarController(TabController controller) {
-    homeNavBarTabBarController.complete(Future(() => controller));
-  }
+  // 首页数据逻辑
+  final HomeModel homeModel = HomeModel();
 }
