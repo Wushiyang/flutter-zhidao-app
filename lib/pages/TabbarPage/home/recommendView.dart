@@ -4,7 +4,7 @@
  * @Autor: wushiyang
  * @Date: 2022-01-29 09:03:04
  * @LastEditors: wushiyang
- * @LastEditTime: 2022-01-29 10:56:06
+ * @LastEditTime: 2022-01-30 15:45:44
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_zhidao_app/components/DefaultListView.dart';
@@ -26,7 +26,7 @@ class RecommendView extends StatelessWidget {
               ),
             ))
         .toList();
-    List<Widget> tabviews = barList.map((item) => DefaultListView()).toList();
+    List<Widget> tabViews = barList.map((item) => DefaultListView()).toList();
     return Container(
       color: Colors.grey.shade300,
       child: DefaultTabController(
@@ -40,7 +40,7 @@ class RecommendView extends StatelessWidget {
                   border: Border(bottom: BorderSide()),
                 ),
               ),
-              Expanded(child: TabBarView(children: tabviews))
+              Expanded(child: TabBarView(children: tabViews))
             ],
           )),
     );

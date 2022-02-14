@@ -4,7 +4,7 @@
  * @Autor: wushiyang
  * @Date: 2022-01-29 10:43:53
  * @LastEditors: wushiyang
- * @LastEditTime: 2022-01-29 18:11:13
+ * @LastEditTime: 2022-01-30 16:14:01
  */
 import 'dart:ffi';
 
@@ -22,7 +22,6 @@ class DefaultListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
         displacement: 40,
-        // edgeOffset: 10,
         // semanticsLabel: '刷新哦',
         strokeWidth: 2,
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
@@ -63,7 +62,7 @@ class ReFreshBouncingScrollPhysics extends BouncingScrollPhysics {
     assert(position.minScrollExtent <= position.maxScrollExtent);
 
     if (position.outOfRange) {
-      if (position.pixels <= -40) return position.pixels + 40;
+      if (position.pixels <= -80) return position.pixels + 80;
     } else
       return offset;
 
